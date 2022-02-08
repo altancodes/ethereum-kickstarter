@@ -6,12 +6,13 @@ contract CampaignFactory {
     */
     // Stores the deployed campaigns for all the Campaign contracts
     address[] deployedCampaigns;
+    address public manager;
 
 
     function createCampaign(uint minimumContribution) public {
         /* Creates a Campaign contract with minimum contribution  value */
         // Assigns the manager to be the address that created the Campaign contract
-        address manager = msg.sender;
+        manager = msg.sender;
 
         // Creates and deploys a new campaign with the manager and minimum contribution
         address newCampaign = new Campaign(manager, minimumContribution);
@@ -74,7 +75,7 @@ contract Campaign {
         numberOfContributors += 1;
     }
 
-    function createRequest(string description, uint value, address recipient) public restricted {
+    function createRequest(string description, uint value, address recipient) public {
         // Requires the manager to call this function 
        Request memory newRequest = Request({
            description: description,
@@ -98,7 +99,7 @@ contract Campaign {
         requests[index].approvals[msg.sender] = true;
     }
 
-    function finalizeRequest(uint index) public restricted {
+    function finalizeRequest(uint index) public {
         Request storage request = requests[index];
         // This is only called by the manager
 
