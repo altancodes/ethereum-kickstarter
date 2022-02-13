@@ -37,20 +37,15 @@ class CampaignIndex extends Component {
        return(
        <Layout>
        <div>
-           <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css"/>
-            <script
-            src="https://code.jquery.com/jquery-3.1.1.min.js"
-            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-            crossorigin="anonymous"></script>
-            <script src="semantic/dist/semantic.min.js"></script>
             <h3>Open Campaigns</h3>
-           {this.renderCampaigns()}
            <Button
             content="Create Campaign"
             icon="add circle"
             primary={true}
             labelPosition="left"
+            floated="right"
             />
+            {this.renderCampaigns()}
         </div>
         </Layout>);
    }
