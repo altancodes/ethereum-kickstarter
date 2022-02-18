@@ -115,4 +115,25 @@ contract Campaign {
         // Given that it is not complete, then set the complete flag to true
         request.complete = true;
     }
+
+    function getSummary() public view returns (
+        uint, uint, uint, uint, address
+    ) {
+        // Manager is not transferred correctly
+        /* 
+        Returns the summary of contract with the minimun contribution, 
+        contract balance, the length of requests, number of contributors, and the manager address */
+        return (
+            minimumContribution,
+            this.balance,
+            requests.length,
+            numberOfContributors,
+            manager
+        );
+    }
+
+    function getRequestsCount() public view returns (uint) {
+        return requests.length;
+    }
+    
 }
